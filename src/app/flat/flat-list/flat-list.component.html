@@ -1,0 +1,42 @@
+<h1>Каталог квартир</h1>
+<div class="catalog">
+  <div class="sidebar">
+    <form [formGroup]="form" (change)="onSubmit()" (submit)="onSubmit()">
+      <div>
+        <h4>Город</h4>
+        <select formControlName="cities"
+          ><option *ngFor="let city of cities" selected="" value="{{ city.id }}"
+            >{{ city.name }}
+          </option></select
+        >
+      </div>
+      <hr />
+      <div formGroupName="categories">
+        <h4>Категория</h4>
+        <label *ngFor="let cat of flatCategories"
+          ><input
+            type="checkbox"
+            name="flat"
+            formControlName="{{ cat.id }}"
+            id=""
+          />{{ cat.name }}</label
+        >
+      </div>
+      <hr />
+      <div formGroupName="countRooms">
+        <h4>Количество комнат</h4>
+        <label *ngFor="let i of countRooms; let idx = index"
+          ><input
+            formControlName="{{ idx }}"
+            type="checkbox"
+            name="rooms"
+            id=""
+          />{{ idx + 1 }}</label
+        >
+      </div>
+    </form>
+  </div>
+  <div class="lising">
+    <app-flat [item]="item" *ngFor="let item of result | async"></app-flat>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+.catalog {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  grid-gap: 10px;
+}
+label {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+}

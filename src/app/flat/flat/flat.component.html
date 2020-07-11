@@ -1,0 +1,7 @@
+<div class="item">
+  <a routerLink="{{ item.id }}"
+    ><h2>{{ item.address }}</h2></a
+  >
+  <h4>{{ item.category.name }}</h4>
+  <span>{{ item.price | currency: "₽ " }}</span>
+</div>
