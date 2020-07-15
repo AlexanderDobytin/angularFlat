@@ -1,0 +1,15 @@
+<hr />
+
+<div *ngIf="!!(this.data | async); else loading" class="pagination">
+  <button
+    *ngFor="let p of pages(); let idx = index"
+    type="button"
+    [ngClass]="{ active: idx + 1 === page }"
+    (click)="this.onChangePage(idx + 1)"
+    class="page"
+  >
+    {{ idx + 1 }}
+  </button>
+</div>
+
+<ng-template #loading>загрузка...</ng-template>

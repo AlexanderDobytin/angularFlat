@@ -41,7 +41,9 @@ export class FlatListComponent implements OnInit, OnChanges {
       return state.flatlist.flatList;
     });
   }
-
+  onChangePage() {
+    this.store.dispatch({ type: "[Flat Page] getFat" });
+  }
   onSubmit() {
     this.flatListService.updateFlat(this.form.value);
     this.store.dispatch({ type: "[Flat Page] getFat" });

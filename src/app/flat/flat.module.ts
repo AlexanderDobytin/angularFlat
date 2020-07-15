@@ -9,8 +9,9 @@ import { StoreModule } from "@ngrx/store";
 import * as Flatlist from "src/app/store/reducers/flat-list.reducer";
 import { EffectsModule } from "@ngrx/effects";
 import { FlatsEffects } from "src/app/store/effects/flat.effects";
+import { FlatPaginationComponent } from './flat-pagination/flat-pagination.component';
 @NgModule({
-  declarations: [FlatComponent, FlatListComponent, FlatPageComponent],
+  declarations: [FlatComponent, FlatListComponent, FlatPageComponent, FlatPaginationComponent],
   imports: [
     CommonModule,
     SharedModule,

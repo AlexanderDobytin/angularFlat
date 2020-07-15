@@ -1,3 +1,8 @@
+export interface IPaginationData {
+  count: number;
+  page: number;
+  pageSize: number;
+}
 export interface IFlatImage {
   name: string;
   image: string;

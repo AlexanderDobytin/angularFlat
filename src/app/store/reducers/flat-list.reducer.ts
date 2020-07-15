@@ -5,21 +5,27 @@ import { IFlat } from "../../flat/flat.interface";
 export const flatListkey = "flatlist";
 export interface IState {
   flatList: IFlat[];
-  id: number;
+  paginationData: { count: number };
 }
 
 export const initialState: IState = {
   flatList: [],
-  id: 1,
+  paginationData: { count: 0 },
 };
 
 const flatListReducer = createReducer(
   initialState,
   on(FlatListActions.loadFlats, (state) => {
-    return { ...state, flatList: state.flatList };
+    return {
+      ...state,
+    };
   }),
   on(FlatListActions.loadFlatsSuccess, (state, action) => {
-    return { ...state, flatList: action.payload };
+    return {
+      ...state,
+      flatList: action.payload.results,
+      paginationData: { count: action.payload.count },
+    };
   })
 );
 
