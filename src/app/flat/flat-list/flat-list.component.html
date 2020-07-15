@@ -37,6 +37,9 @@
     </form>
   </div>
   <div class="lising">
-    <app-flat [item]="item" *ngFor="let item of result | async"></app-flat>
+    <app-flat
+      [item]="item"
+      *ngFor="let item of this.results | async"
+    ></app-flat>
   </div>
 </div>

@@ -39,7 +39,6 @@ export class FlatListService {
       })
       .filter((i) => i)
       .toString();
-    return this.loadFlats();
   }
 
   loadFlats() {

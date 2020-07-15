@@ -5,12 +5,17 @@ import { FlatListComponent } from "./flat-list/flat-list.component";
 import { SharedModule } from "../shared/shared.module";
 import { RouterModule } from "@angular/router";
 import { FlatPageComponent } from "./flat-page/flat-page.component";
-
+import { StoreModule } from "@ngrx/store";
+import * as Flatlist from "src/app/store/reducers/flat-list.reducer";
+import { EffectsModule } from "@ngrx/effects";
+import { FlatsEffects } from "src/app/store/effects/flat.effects";
 @NgModule({
   declarations: [FlatComponent, FlatListComponent, FlatPageComponent],
   imports: [
     CommonModule,
     SharedModule,
+    EffectsModule.forFeature([FlatsEffects]),
+    StoreModule.forFeature(Flatlist.flatListkey, Flatlist.reducer),
     RouterModule.forChild([
       {
         path: "flat",
