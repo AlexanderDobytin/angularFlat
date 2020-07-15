@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { IFlat } from "../flat.interface";
-import { Store } from "@ngrx/store";
 import { Observable } from "rxjs";
+import { FlatListService } from "src/app/services/flat-list.service";
 
 @Component({
   selector: "app-flat-page",
@@ -12,16 +12,12 @@ import { Observable } from "rxjs";
 export class FlatPageComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
-    private store: Store<{ flatlist: { flatList: IFlat[] } }>
+    private flatListService: FlatListService
   ) {}
   flat$: Observable<IFlat>;
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      this.flat$ = this.store.select((state) => {
-        return state.flatlist.flatList.find((flat) => flat.id == params.id);
-      });
+      this.flat$ = this.flatListService.getCurrentFlat(params.id);
     });
-
-    this.store.dispatch({ type: "[Flat Page] getFat" });
   }
 }

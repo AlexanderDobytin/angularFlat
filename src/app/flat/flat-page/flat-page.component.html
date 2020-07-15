@@ -1,37 +1,37 @@
 <div>
-  <div *ngIf="flat$ | async; else loading">
-    <h1>{{ (flat$ | async).address }}</h1>
+  <div *ngIf="flat$ | async as flat; else loading">
+    <h1>{{ flat.address }}</h1>
 
     <ul>
-      <li *ngIf="(flat$ | async).builtYear">
-        Год постройки {{ (flat$ | async).builtYear }}
+      <li *ngIf="flat.builtYear">
+        Год постройки {{ flat.builtYear }}
       </li>
-      <li *ngIf="(flat$ | async).floor">Этаж {{ (flat$ | async).floor }}</li>
-      <li *ngIf="(flat$ | async).square">
-        Площадь {{ (flat$ | async).square }} м<sup>2</sup>
+      <li *ngIf="flat.floor">Этаж {{ flat.floor }}</li>
+      <li *ngIf="flat.square">
+        Площадь {{ flat.square }} м<sup>2</sup>
       </li>
-      <li *ngIf="(flat$ | async).builtYear">
-        Год постройки {{ (flat$ | async).builtYear }}
+      <li *ngIf="flat.builtYear">
+        Год постройки {{ flat.builtYear }}
       </li>
     </ul>
     <hr />
     <div class="images">
       <img
-        *ngFor="let img of (flat$ | async).images"
+        *ngFor="let img of flat.images"
         src="{{ img.image }}"
         alt="{{ img.image }}"
       />
     </div>
     <hr />
     <div class="contact">
-      <span class="name">{{ (flat$ | async).contactPerson }}</span>
+      <span class="name">{{ flat.contactPerson }}</span>
       <div>
-        <a href="tel:{{ (flat$ | async).contactPhone }}">{{
-          (flat$ | async).contactPhone
+        <a href="tel:{{ flat.contactPhone }}">{{
+          flat.contactPhone
         }}</a>
       </div>
-      <a href="mailTo:{{ (flat$ | async).contactEmail }}">{{
-        (flat$ | async).contactEmail
+      <a href="mailTo:{{ flat.contactEmail }}">{{
+        flat.contactEmail
       }}</a>
     </div>
   </div>

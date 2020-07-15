@@ -36,10 +36,19 @@
       </div>
     </form>
   </div>
+
   <div class="lising">
-    <app-flat
-      [item]="item"
-      *ngFor="let item of this.results | async"
-    ></app-flat>
+    <div class="items">
+      <app-flat
+        [item]="item"
+        *ngFor="let item of this.results | async"
+      ></app-flat>
+    </div>
+
+    <div class="pagination">
+      <app-flat-pagination
+        (changePage)="changePage($event)"
+      ></app-flat-pagination>
+    </div>
   </div>
 </div>

@@ -9,3 +9,7 @@ label {
   align-items: center;
   flex-direction: row;
 }
+.items {
+  height: calc(100vh - 180px);
+  overflow-x: auto;
+}

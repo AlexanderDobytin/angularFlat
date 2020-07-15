@@ -1,16 +1,15 @@
-import { Component, OnInit, OnChanges, Input } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { FlatListService } from "src/app/services/flat-list.service";
 import { IFlat } from "../flat.interface";
 import { Observable } from "rxjs";
 import { FormGroup, FormControl } from "@angular/forms";
-import { Store } from "@ngrx/store";
 
 @Component({
   selector: "app-flat-list",
   templateUrl: "./flat-list.component.html",
   styleUrls: ["./flat-list.component.scss"],
 })
-export class FlatListComponent implements OnInit, OnChanges {
+export class FlatListComponent implements OnInit {
   cities = [
     { name: "Все города" },
     { id: 3, name: "Нижневартовск" },
@@ -32,24 +31,17 @@ export class FlatListComponent implements OnInit, OnChanges {
   form: FormGroup;
   countRooms = Array(5).fill(null);
   results: Observable<IFlat[]>;
-  result: Observable<IFlat[]>;
-  constructor(
-    private flatListService: FlatListService,
-    private store: Store<{ flatlist: { flatList: IFlat[] } }>
-  ) {
-    this.results = this.store.select((state) => {
-      return state.flatlist.flatList;
-    });
-  }
+
+  constructor(private flatListService: FlatListService) {}
 
   onSubmit() {
-    this.flatListService.updateFlat(this.form.value);
-    this.store.dispatch({ type: "[Flat Page] getFat" });
+    this.results = this.flatListService.updateFlat(this.form.value);
   }
-
+  changePage() {
+    this.results = this.flatListService.loadFlats();
+  }
   ngOnInit(): void {
-    this.store.dispatch({ type: "[Flat Page] getFat" });
-
+    this.results = this.flatListService.loadFlats();
     const categories = {};
     const countRooms = {};
     this.flatCategories.forEach((item) => {
@@ -65,5 +57,4 @@ export class FlatListComponent implements OnInit, OnChanges {
       countRooms: new FormGroup(countRooms),
     });
   }
-  ngOnChanges() {}
 }

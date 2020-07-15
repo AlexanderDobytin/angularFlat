@@ -1,0 +1,11 @@
+button {
+  padding: 10px;
+  margin-right: 10px;
+  border-radius: 4px;
+  &.active {
+    border-color: green;
+    background: green;
+    color: #fff;
+  }
+}
+
