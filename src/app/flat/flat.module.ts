@@ -9,9 +9,14 @@ import { StoreModule } from "@ngrx/store";
 import * as Flatlist from "src/app/store/reducers/flat-list.reducer";
 import { EffectsModule } from "@ngrx/effects";
 import { FlatsEffects } from "src/app/store/effects/flat.effects";
-import { FlatPaginationComponent } from './flat-pagination/flat-pagination.component';
+import { FlatPaginationComponent } from "./flat-pagination/flat-pagination.component";
 @NgModule({
-  declarations: [FlatComponent, FlatListComponent, FlatPageComponent, FlatPaginationComponent],
+  declarations: [
+    FlatComponent,
+    FlatListComponent,
+    FlatPageComponent,
+    FlatPaginationComponent,
+  ],
   imports: [
     CommonModule,
     SharedModule,
@@ -19,10 +24,10 @@ import { FlatPaginationComponent } from './flat-pagination/flat-pagination.compo
     StoreModule.forFeature(Flatlist.flatListkey, Flatlist.reducer),
     RouterModule.forChild([
       {
-        path: "flat",
+        path: "",
         component: FlatListComponent,
       },
-      { path: "flat/:id", component: FlatPageComponent },
+      { path: ":id", component: FlatPageComponent },
     ]),
   ],
   exports: [RouterModule],
